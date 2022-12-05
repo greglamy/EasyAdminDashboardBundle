@@ -83,18 +83,18 @@ class DefaultController extends AbstractController
         return $count;
     }
 
-    private function executeCustomQuery($class, $query)
+    /**
+     * @throws \ErrorException
+     */
+    private function executeCustomQuery($class, $query): string
     {
+
         $repo = $this->entityManager->getRepository($class);
 
         if(!method_exists($repo, $query)){
             throw new \ErrorException($query.' is not a valid function.');
         }
 
-        $q = $repo->{$query}();
-
-        $count = is_numeric($q) ? $q : count($q);
-
-        return $count;
+        return $repo->{$query}();
     }
 }
