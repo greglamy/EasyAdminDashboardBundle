@@ -1,9 +1,9 @@
 {
-    "name": "easyadminfriends/easyadmindashboard-bundle",
+    "name": "greglamy/easyadmindashboard-bundle",
     "type": "symfony-bundle",
     "description": "Dashboard/Homepage page for EasyAdminBundle",
     "keywords": ["easyadmin", "dashboard"],
-    "homepage": "https://github.com/anybug/EasyAdminDashboardBundle",
+    "homepage": "https://github.com/greglamy/EasyAdminDashboardBundle",
     "license": "MIT",
     "authors": [
         {
