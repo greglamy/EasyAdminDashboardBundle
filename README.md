@@ -39,6 +39,7 @@ services:
 
     EasyAdminFriends\EasyAdminDashboardBundle\Controller\DefaultController:
         public: true
+        autowire: true
 ````          
 
 Generate dashboard items inside Easyadmin Dashboard Controller
