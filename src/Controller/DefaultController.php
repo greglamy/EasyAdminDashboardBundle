@@ -38,11 +38,13 @@ class DefaultController extends AbstractController
                 if(!empty($block['items'])){
                     foreach($block['items'] as $k=>$item){
                         if(!empty($item['query'])){
-                            $count = $this->executeCustomQuery($item['class'], $item['query']);
+                            $res = $this->executeCustomQuery($item['class'], $item['query']);
                         }else {
-                            $count = $this->getBlockCount($item['class'], !empty($item['dql_filter']) ? $item['dql_filter'] : false);
+                            $res = $this->getBlockCount($item['class'], !empty($item['dql_filter']) ? $item['dql_filter'] : false);
                         }
-                        $dashboard['blocks'][$key]['items'][$k]['count'] = $count;
+                        $dashboard['blocks'][$key]['items'][$k]['res'] = $res;
+
+                        $dashboard['blocks'][$key]['items'][$k]['title'] = $item['title'];
 
                         if(!empty($item['entity'])){
                             $entity = $item['entity'];
@@ -86,15 +88,12 @@ class DefaultController extends AbstractController
     /**
      * @throws \ErrorException
      */
-    private function executeCustomQuery($class, $query): string
+    private function executeCustomQuery($class, $query): array
     {
-
         $repo = $this->entityManager->getRepository($class);
-
         if(!method_exists($repo, $query)){
             throw new \ErrorException($query.' is not a valid function.');
         }
-
         return $repo->{$query}();
     }
 }
