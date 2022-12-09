@@ -88,7 +88,7 @@ class DefaultController extends AbstractController
     /**
      * @throws \ErrorException
      */
-    private function executeCustomQuery($class, $query): array
+    private function executeCustomQuery($class, $query)
     {
         $repo = $this->entityManager->getRepository($class);
         if(!method_exists($repo, $query)){
